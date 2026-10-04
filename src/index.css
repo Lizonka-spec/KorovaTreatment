@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+}
+
+:root {
+    --text-main: #fff2e2;
+    --text-contrast: #ff5e00;
+}
