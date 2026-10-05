@@ -8,7 +8,7 @@
     }
 }
 
-:root {
-    --text-main: #fff2e2;
-    --text-contrast: #ff5e00;
+@theme {
+    --color-main: #fff2e2;
+    --color-contrast: #ff5e00;
 }
