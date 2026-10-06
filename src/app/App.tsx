@@ -1,3 +1,9 @@
+import { Bar } from "../pages";
+import { Route, Routes } from "react-router-dom";
 export function App() {
-    return <div className="w-full py-20"></div>;
+    return (
+        <Routes>
+            <Route path="/" index element={<Bar />} />
+        </Routes>
+    );
 }
