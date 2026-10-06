@@ -1,14 +1,13 @@
-import { Info } from "lucide-react";
-
 type AppHeaderProps = {
-    Headline: string;
+    headline: string;
+    subtext: string;
 };
 
-export const AppHeader = ({ Headline }: AppHeaderProps) => {
+export const AppHeader = ({ headline, subtext }: AppHeaderProps) => {
     return (
-        <div className="bg-black">
-            <Info size={20} className="text-main" />
-            <h1 className="text-contrast text-xl font-bold ">{Headline}</h1>
+        <div className="flex flex-col text-main text-md justify-center items-center text-center m-auto">
+            <h1 className="text-contrast text-xl font-bold mb-3">{headline}</h1>
+            <p>{subtext}</p>
         </div>
     );
 };
