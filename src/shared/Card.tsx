@@ -2,13 +2,19 @@ type CardProps = {
     bgImage: string;
     theme: string;
     onClick: () => void;
+    isDisabled?: boolean;
 };
 
-export const Card = ({ bgImage, theme, onClick }: CardProps) => {
+export const Card = ({ bgImage, theme, onClick, isDisabled = false }: CardProps) => {
     return (
         <div
             onClick={onClick}
-            className="bg-cover bg-center relative w-full max-h-[50vh] sm:max-h-none aspect-[3/4] rounded-xl flex items-end justify-center overflow-hidden transition-all duration-500 ease-out group hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.6)]"
+            className={`bg-center bg-cover relative w-full max-h-[50vh] sm:max-h-none aspect-[3/4] rounded-xl flex items-end justify-center overflow-hidden transition-all duration-500 ease-out group 
+                ${
+                    isDisabled
+                        ? "pointer-events-none opacity-40 grayscale"
+                        : "cursor-pointer md:hover:scale-105 md:hover:shadow-[0_0_25px_rgba(249,115,22,0.6)]"
+                }`}
             style={{
                 backgroundImage: `url(${bgImage})`,
             }}
