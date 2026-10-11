@@ -2,8 +2,10 @@ import { useState } from "react";
 import { AppHeader, MainContent } from "../widgets";
 import { ProgressBar } from "../shared/ProgressBar";
 import type { CardData } from "../widgets/MainContent/types";
+import { useNavigate } from "react-router-dom";
 
 export const Bar = () => {
+    const navigate = useNavigate();
     const [lawfulness, setLawfulness] = useState(0);
     const [answeredCardIds, setAnsweredCardIds] = useState<number[]>([]);
 
@@ -45,7 +47,17 @@ export const Bar = () => {
     const handleApplyEffect = (effectValue: number, cardId: number) => {
         setLawfulness((prev) => Math.max(0, Math.min(100, prev + effectValue)));
 
-        setAnsweredCardIds((prev) => [...prev, cardId]);
+        setAnsweredCardIds((prev) => {
+            const updated = [...prev, cardId];
+
+            if (updated.length === 3) {
+                setTimeout(() => {
+                    navigate("/laboratory");
+                }, 500);
+            }
+
+            return updated;
+        });
     };
 
     return (
