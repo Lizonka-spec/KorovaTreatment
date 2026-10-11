@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card } from "../../shared";
-import { Modal } from "../Modal";
+import { Modal } from "../../features/Modal";
 import type { CardData } from "./types";
 
 type MainContentProps = {
