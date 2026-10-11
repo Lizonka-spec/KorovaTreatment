@@ -1,72 +1,79 @@
-// import { useState } from "react";
-// import { AppHeader, MainContent } from "../widgets";
-// import { ProgressBar } from "../shared/ProgressBar";
-// import type { CardData } from "../widgets/MainContent/types";
-// import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { AppHeader, MainContent } from "../widgets";
+import { ProgressBar } from "../shared/ProgressBar";
+import type { CardData } from "../widgets/MainContent/types";
+import { useNavigate } from "react-router-dom";
 
 export const Laboratory = () => {
-    return <div>Лаборатория</div>;
-    // const navigate = useNavigate();
-    // const [lawfulness, setLawfulness] = useState(0);
-    // const [answeredCardIds, setAnsweredCardIds] = useState<number[]>([]);
-    // const barCards: CardData[] = [
-    //     {
-    //         id: 1,
-    //         bgImage: "/img/Card1.png",
-    //         theme: "Побег от реальности",
-    //         question:
-    //             "Имеет ли право человек уходить от реальности с помощью веществ или субкультур, если его не устраивает мир вокруг?",
-    //         answer1: "Разрешено",
-    //         answer2: "Запрещено",
-    //         effect1: -33,
-    //         effect2: 33,
-    //     },
-    //     {
-    //         id: 2,
-    //         bgImage: "/img/Card2.png",
-    //         theme: "Природа жестокости",
-    //         question: "Если подростки совершают жестокие поступки ради забавы, кто в этом виноват?",
-    //         answer1: "Общество",
-    //         answer2: "Вседозволенность",
-    //         effect1: -33,
-    //         effect2: 33,
-    //     },
-    //     {
-    //         id: 3,
-    //         bgImage: "/img/Card3.jpg",
-    //         theme: "Конфликт поколений",
-    //         question:
-    //             "Должна ли молодежь слепо подчиняться правилам старшего поколения и государства?",
-    //         answer1: "Никогда",
-    //         answer2: "Обязана",
-    //         effect1: -34,
-    //         effect2: 34,
-    //     },
-    // ];
-    // const handleApplyEffect = (effectValue: number, cardId: number) => {
-    //     setLawfulness((prev) => Math.max(0, Math.min(100, prev + effectValue)));
-    //     setAnsweredCardIds((prev) => {
-    //         const updated = [...prev, cardId];
-    //         if (updated.length === 3) {
-    //             setTimeout(() => {
-    //                 navigate("/laboratory");
-    //             }, 500);
-    //         }
-    //         return updated;
-    //     });
-    // };
-    // return (
-    //     <div className="flex flex-col gap-7">
-    //         <AppHeader
-    //             headline='МОЛОЧНЫЙ БАР "KOROVA"'
-    //             subtext="Три дилеммы. Три ответа. Один эксперимент, который измерит твою покорность Системе."
-    //         />
-    //         <MainContent
-    //             cards={barCards}
-    //             answeredCardIds={answeredCardIds}
-    //             onApplyEffect={handleApplyEffect}
-    //         />
-    //         <ProgressBar value={lawfulness} label="Законопослушность" />
-    //     </div>
-    // );
+    const navigate = useNavigate();
+    const [humanity, setHumanity] = useState(0);
+    const [answeredCardIds, setAnsweredCardIds] = useState<number[]>([]);
+
+    const barCards: CardData[] = [
+        {
+            id: 1,
+            bgImage: "/img/Card4.jpg",
+            theme: "Насилие государства",
+            question:
+                "Допустимо ли применять физическое насилие и пытки к преступнику, если это гарантированно исправит его?",
+            answer1: "Недопустимо",
+            answer2: "Оправданно",
+            effect1: 33,
+            effect2: -33,
+        },
+        {
+            id: 2,
+            bgImage: "/img/Card5.jpg",
+            theme: "Свобода выбора",
+            question:
+                "Что лучше для общества: человек, который принудительно делает только добро, или человек, который сам выбирает между добром и злом?",
+            answer1: "Послушание",
+            answer2: "Свобода",
+            effect1: -33,
+            effect2: 33,
+        },
+        {
+            id: 3,
+            bgImage: "/img/Card6.jpg",
+            theme: "Жертва ради порядка",
+            question:
+                "Готовы ли вы ради искоренения преступности лишить осужденного возможности наслаждаться искусством и музыкой ",
+            answer1: "Да",
+            answer2: "Нет",
+            effect1: -34,
+            effect2: 34,
+        },
+    ];
+
+    const handleApplyEffect = (effectValue: number, cardId: number) => {
+        setHumanity((prev) => Math.max(0, Math.min(100, prev + effectValue)));
+
+        setAnsweredCardIds((prev) => {
+            const updated = [...prev, cardId];
+
+            if (updated.length === 3) {
+                setTimeout(() => {
+                    navigate("/results");
+                }, 500);
+            }
+
+            return updated;
+        });
+    };
+
+    return (
+        <div className="flex flex-col gap-7">
+            <AppHeader
+                headline="ЛАБОРАТОРИЯ МЕТОДА ЛЮДОВИКА"
+                subtext="Инструменты исправления. Три вопроса. Эксперимент, который определит грань твоей человечности."
+            />
+
+            <MainContent
+                cards={barCards}
+                answeredCardIds={answeredCardIds}
+                onApplyEffect={handleApplyEffect}
+            />
+            <ProgressBar value={humanity} label="Человечность" />
+        </div>
+    );
 };
