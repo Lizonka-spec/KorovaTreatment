@@ -1,11 +1,13 @@
 type CardProps = {
     bgImage: string;
     theme: string;
+    onClick: () => void;
 };
 
-export const Card = ({ bgImage, theme }: CardProps) => {
+export const Card = ({ bgImage, theme, onClick }: CardProps) => {
     return (
         <div
+            onClick={onClick}
             className="bg-cover bg-center relative w-full max-h-[50vh] sm:max-h-none aspect-[3/4] rounded-xl flex items-end justify-center overflow-hidden transition-all duration-500 ease-out group hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.6)]"
             style={{
                 backgroundImage: `url(${bgImage})`,

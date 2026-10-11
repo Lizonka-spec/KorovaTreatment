@@ -11,6 +11,7 @@
 @theme {
     --color-main: #fff2e2;
     --color-contrast: #ff5e00;
+    --color-accent: #fc0fc0;
 }
 
 body {
