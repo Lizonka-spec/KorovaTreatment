@@ -1,14 +1,25 @@
 import { useState } from "react";
 import { Card } from "../../shared";
-import { Modal } from "../Modal";
+import { Modal } from "../../features";
 import type { CardData } from "./types";
 
 type MainContentProps = {
     cards: CardData[];
+    onApplyEffect: (effectValue: number, cardId: number) => void;
+    answeredCardIds: number[];
 };
 
-export const MainContent = ({ cards }: MainContentProps) => {
+export const MainContent = ({ cards, onApplyEffect, answeredCardIds }: MainContentProps) => {
     const [activeCard, setActiveCard] = useState<CardData | null>(null);
+
+    const handleAnswerSelect = (buttonIndex: number) => {
+        if (!activeCard) return;
+
+        const effect = buttonIndex === 1 ? activeCard.effect1 : activeCard.effect2;
+
+        onApplyEffect(effect, activeCard.id);
+        setActiveCard(null);
+    };
 
     return (
         <div className="w-full max-w-5xl mx-auto my-10 px-5">
@@ -19,6 +30,7 @@ export const MainContent = ({ cards }: MainContentProps) => {
                         bgImage={card.bgImage}
                         theme={card.theme}
                         onClick={() => setActiveCard(card)}
+                        isDisabled={answeredCardIds.includes(card.id)}
                     />
                 ))}
             </div>
@@ -30,6 +42,7 @@ export const MainContent = ({ cards }: MainContentProps) => {
                 question={activeCard?.question || ""}
                 answer1={activeCard?.answer1 || ""}
                 answer2={activeCard?.answer2 || ""}
+                onAnswer={handleAnswerSelect}
             />
         </div>
     );

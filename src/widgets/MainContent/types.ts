@@ -5,4 +5,6 @@ export type CardData = {
     question: string;
     answer1: string;
     answer2: string;
+    effect1: number;
+    effect2: number;
 };
