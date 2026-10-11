@@ -1,21 +1,24 @@
 type CardProps = {
-    question: string;
     bgImage: string;
+    theme: string;
 };
 
-export const Card = ({ question, bgImage }: CardProps) => {
+export const Card = ({ bgImage, theme }: CardProps) => {
     return (
-        <div className="relative w-full aspect-[3/4] rounded-lg text-center flex items-center justify-center overflow-hidden transition-all duration-500 ease-out group hover:scale-105 hover:shadow-[0_0_25px_rgba(239,68,68,0.7)]">
-            <div
-                className="w-full h-full bg-cover bg-center absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-110"
-                style={{ backgroundImage: `url(${bgImage})` }}
-            ></div>
+        <div
+            className="bg-cover bg-center relative w-full max-h-[50vh] sm:max-h-none aspect-[3/4] rounded-xl flex items-end justify-center overflow-hidden transition-all duration-500 ease-out group hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.6)]"
+            style={{
+                backgroundImage: `url(${bgImage})`,
+            }}
+        >
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-            <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-75 transition-opacity duration-500 ease-out bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-
-            <p className="relative text-white text-xl font-bold px-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                {question}
-            </p>
+            <div className="relative w-full p-6 flex flex-col items-center transition-transform duration-500 group-hover:translate-y-[-10px]">
+                <h2 className="text-main text-lg md:text-xl lg:text-2xl text-center font-black uppercase transition-colors duration-500 group-hover:text-contrast">
+                    {theme}
+                </h2>
+                <div className="w-0 h-[2px] bg-orange-500 mt-2 transition-all duration-500 ease-out group-hover:w-24"></div>
+            </div>
         </div>
     );
 };
