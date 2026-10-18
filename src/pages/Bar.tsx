@@ -45,14 +45,15 @@ export const Bar = () => {
     ];
 
     const handleApplyEffect = (effectValue: number, cardId: number) => {
-        setLawfulness((prev) => Math.max(0, Math.min(100, prev + effectValue)));
+        const nextLawfulness = Math.max(0, Math.min(100, lawfulness + effectValue));
+        setLawfulness(nextLawfulness);
 
         setAnsweredCardIds((prev) => {
             const updated = [...prev, cardId];
 
             if (updated.length === 3) {
                 setTimeout(() => {
-                    navigate("/laboratory");
+                    navigate("/laboratory", { state: { lawfulness: nextLawfulness } });
                 }, 500);
             }
 
@@ -61,12 +62,11 @@ export const Bar = () => {
     };
 
     return (
-        <div className="flex flex-col gap-7">
+        <div className="theme-bar flex flex-col gap-7 w-full min-h-screen ">
             <AppHeader
                 headline='МОЛОЧНЫЙ БАР "KOROVA"'
                 subtext="Три дилеммы. Три ответа. Один эксперимент, который измерит твою покорность Системе."
             />
-
             <MainContent
                 cards={barCards}
                 answeredCardIds={answeredCardIds}
