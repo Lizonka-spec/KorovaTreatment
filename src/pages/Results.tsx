@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ProgressBar } from "../shared/ProgressBar";
 import { AppHeader } from "../widgets";
 
 export const Results = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const chaos = location.state?.lawfulness ?? 0;
     const order = location.state?.humanity ?? 0;
@@ -49,7 +50,6 @@ export const Results = () => {
                 headline="ПРОФИЛЬ ЛИЧНОСТИ"
                 subtext="Электронная система анализа зафиксировала твои показатели. Ознакомься со своим окончательным статусом в структуре Нового Порядка."
             />
-
             <div className="flex flex-col lg:flex-row gap-10 items-start w-full">
                 <div className="flex flex-col gap-4 w-full lg:w-1/2">
                     <ProgressBar value={chaos} label="Уровень деструктивной свободы (Хаос)" />
@@ -81,6 +81,12 @@ export const Results = () => {
                     </div>
                 </div>
             </div>
+            <button
+                onClick={() => navigate("/")}
+                className="bg-contrast hover:bg-rose-600 w-80 m-auto text-slate-950 text-xs font-black uppercase tracking-wider px-4 py-2 rounded-lg transition-colors shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+            >
+                Перейти к теории
+            </button>
         </div>
     );
 };
